@@ -4,12 +4,13 @@ import 'package:shopapp/models/provider/product_provider.dart';
 import 'package:shopapp/view/home/widget/productitem.dart';
 
 class GridVieww extends StatelessWidget {
-  const GridVieww({super.key});
+  final bool showOnly;
+  const GridVieww({super.key, required this.showOnly});
 
   @override
   Widget build(BuildContext context) {
     final productData = Provider.of<ProductProvider>(context);
-    final product = productData.items;
+    final product = showOnly ? productData.favotesItem : productData.items;
     return GridView.builder(
       padding: const EdgeInsets.all(10.0),
       itemCount: product.length,
@@ -19,11 +20,10 @@ class GridVieww extends StatelessWidget {
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
-      itemBuilder: (context, index) {
-        return ProductItem(
-          id: product[index].id,
-          title: product[index].title,
-          image: product[index].imageUrl,
+      itemBuilder: (ctx, index) {
+        return ChangeNotifierProvider.value(
+          value: product[index],
+          child: const ProductItem(),
         );
       },
     );
