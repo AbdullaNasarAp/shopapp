@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopapp/models/provider/cart.dart';
-import 'package:shopapp/models/provider/product.dart';
+import 'package:shopapp/controller/models/provider/cart.dart';
+import 'package:shopapp/controller/models/provider/product.dart';
 import 'package:shopapp/view/product_detail/product_detail.dart';
 
 class ProductItem extends StatelessWidget {
@@ -40,11 +40,15 @@ class ProductItem extends StatelessWidget {
                     ),
                   );
                 }),
-                GestureDetector(
-                  onTap: () {
-                    cart.addItems(product.id, product.title, product.price);
+                IconButton(
+                  onPressed: () {
+                    cart.addItems(
+                      product.id,
+                      product.title,
+                      product.price,
+                    );
                   },
-                  child: const Icon(
+                  icon: const Icon(
                     Icons.shopping_cart,
                   ),
                 ),

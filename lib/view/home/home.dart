@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopapp/models/provider/cart.dart';
-import 'package:shopapp/models/provider/product.dart';
+import 'package:shopapp/controller/models/provider/cart.dart';
+import 'package:shopapp/controller/models/provider/product.dart';
+import 'package:shopapp/view/cart/cart_screen.dart';
 import 'package:shopapp/view/home/widget/badge.dart';
 import 'package:shopapp/view/home/widget/grid.dart';
 
@@ -62,7 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: const Icon(
                       Icons.shopping_bag,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(CartShow.routeName);
+                    },
                   ),
                 );
               },
