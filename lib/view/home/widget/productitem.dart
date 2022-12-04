@@ -47,6 +47,7 @@ class ProductItem extends StatelessWidget {
                       product.title,
                       product.price,
                     );
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         duration: const Duration(
@@ -80,7 +81,7 @@ class ProductItem extends StatelessWidget {
             Navigator.of(context)
                 .pushNamed(ProductDetail.routeName, arguments: product.id);
           },
-          child: Image.asset(
+          child: Image.network(
             product.imageUrl,
             fit: BoxFit.cover,
           ),
