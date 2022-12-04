@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
-
-class CartItem {
-  final String id;
-  final String title;
-  final int quantity;
-  final double price;
-
-  CartItem({
-    required this.id,
-    required this.title,
-    required this.quantity,
-    required this.price,
-  });
-}
+import 'package:shopapp/model/cartitem.dart';
 
 class Cart with ChangeNotifier {
   Map<String, CartItem> _item = {};
@@ -54,6 +41,16 @@ class Cart with ChangeNotifier {
         ),
       );
     }
+    notifyListeners();
+  }
+
+  void removeItem(String productId) {
+    _item.remove(productId);
+    notifyListeners();
+  }
+
+  void clearCart() {
+    _item = {};
     notifyListeners();
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopapp/controller/models/provider/product.dart';
+import 'package:shopapp/controller/provider/product.dart';
 
 class ProductProvider with ChangeNotifier {
   /////////////////////////////list Product ///////////////////////////////////////

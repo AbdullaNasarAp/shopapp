@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:shopapp/controller/models/provider/cart.dart';
-import 'package:shopapp/controller/models/provider/product_provider.dart';
+import 'package:shopapp/controller/provider/cart.dart';
+import 'package:shopapp/controller/provider/order.dart';
+import 'package:shopapp/controller/provider/product_provider.dart';
 import 'package:shopapp/view/cart/cart_screen.dart';
 import 'package:shopapp/view/home/home.dart';
 import 'package:shopapp/view/product_detail/product_detail.dart';
@@ -18,12 +19,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: ProductProvider(),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
         ),
-        ChangeNotifierProvider.value(
-          value: Cart(),
+        ChangeNotifierProvider(
+          create: (context) => Cart(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => Order(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
