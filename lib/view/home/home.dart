@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shopapp/controller/provider/cart.dart';
 import 'package:shopapp/controller/provider/product.dart';
 import 'package:shopapp/view/cart/cart_screen.dart';
+import 'package:shopapp/view/drawer/maindrawer.dart';
 import 'package:shopapp/view/home/widget/badge.dart';
 import 'package:shopapp/view/home/widget/grid.dart';
 
@@ -72,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
+        drawer: const MainDrawer(),
         body: GridVieww(showOnly: showFavoriteOnly));
   }
 }

@@ -64,18 +64,25 @@ class CartShow extends StatelessWidget {
           ),
           ksizeboxh,
           Expanded(
-              child: ListView.builder(
-            itemBuilder: (context, index) {
-              return CartItems(
-                productId: cartt.items.keys.toList()[index],
-                id: cartt.items.values.toList()[index].id,
-                title: cartt.items.values.toList()[index].title,
-                price: cartt.items.values.toList()[index].price,
-                quantity: cartt.items.values.toList()[index].quantity,
-              );
-            },
-            itemCount: cartt.items.length,
-          ))
+              child: cartt.items.isEmpty
+                  ? const Center(
+                      child: Text(
+                        "Pls Add Anything To Cart!",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    )
+                  : ListView.builder(
+                      itemBuilder: (context, index) {
+                        return CartItems(
+                          productId: cartt.items.keys.toList()[index],
+                          id: cartt.items.values.toList()[index].id,
+                          title: cartt.items.values.toList()[index].title,
+                          price: cartt.items.values.toList()[index].price,
+                          quantity: cartt.items.values.toList()[index].quantity,
+                        );
+                      },
+                      itemCount: cartt.items.length,
+                    ))
         ],
       ),
     );

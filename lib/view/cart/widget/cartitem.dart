@@ -51,15 +51,15 @@ class CartItems extends StatelessWidget {
             ),
             title: Text(
               title,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
             subtitle: Text(
               "Total : \$${(price * quantity)}",
-              style: TextStyle(color: Colors.black, fontSize: 17),
+              style: const TextStyle(color: Colors.black, fontSize: 17),
             ),
             trailing: Text(
               "$quantity X",
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
           ),
         ),
