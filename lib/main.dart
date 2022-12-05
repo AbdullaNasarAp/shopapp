@@ -1,73 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopapp/controller/provider/cart.dart';
-import 'package:shopapp/controller/provider/order.dart';
-import 'package:shopapp/controller/provider/product_provider.dart';
-import 'package:shopapp/view/cart/cart_screen.dart';
-import 'package:shopapp/view/editproduct/editproduct.dart';
-import 'package:shopapp/view/home/home.dart';
-import 'package:shopapp/view/order/order_screen.dart';
-import 'package:shopapp/view/product_detail/product_detail.dart';
-import 'package:shopapp/view/user_product/user_product.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import './screens/cart_screen.dart';
+import './screens/products_overview_screen.dart';
+import './screens/product_detail_screen.dart';
+import './providers/products.dart';
+import './providers/cart.dart';
+import './providers/orders.dart';
+import './screens/orders_screen.dart';
+import './screens/user_products_screen.dart';
+import './screens/edit_product_screen.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => Products(),
+        ChangeNotifierProvider.value(
+          value: Products(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => Cart(),
+        ChangeNotifierProvider.value(
+          value: Cart(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => Order(),
-        )
+        ChangeNotifierProvider.value(
+          value: Orders(),
+        ),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: Colors.pinkAccent,
-          primarySwatch: Colors.blueGrey,
-          textTheme: const TextTheme(
-            bodyText1: TextStyle(
-                fontFamily: 'Montserrat-VariableFont_wght',
-                fontSize: 30,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
-            bodyText2: TextStyle(
-                fontFamily: 'Montserrat-VariableFont_wght',
-                fontSize: 25,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
-            subtitle1: TextStyle(
-                fontFamily: 'Montserrat-VariableFont_wght',
-                fontSize: 17,
-                color: Colors.black,
-                fontWeight: FontWeight.bold),
-            subtitle2: TextStyle(
-                fontFamily: 'Montserrat-VariableFont_wght',
-                fontSize: 17,
-                color: Colors.black,
-                fontWeight: FontWeight.bold),
+          title: 'MyShop',
+          theme: ThemeData(
+            fontFamily: 'Lato',
+            colorScheme:
+                ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(
+              secondary: Colors.deepOrange,
+            ),
           ),
-        ),
-        home: const HomeScreen(),
-        routes: {
-          ProductDetail.routeName: (context) => const ProductDetail(),
-          CartShow.routeName: (context) => const CartShow(),
-          OrderScreen.routeorder: (context) => const OrderScreen(),
-          UserProductsScreen.routeName: (context) => const UserProductsScreen(),
-          EditProductScreen.routeName: (context) => const EditProductScreen()
-        },
-      ),
+          home: ProductsOverviewScreen(),
+          routes: {
+            ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
+            CartScreen.routeName: (ctx) => CartScreen(),
+            OrdersScreen.routeName: (ctx) => OrdersScreen(),
+            UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
+            EditProductScreen.routeName: (ctx) => EditProductScreen(),
+          }),
     );
   }
 }
