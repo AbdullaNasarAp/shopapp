@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var showFavoriteOnly = false;
-  final List<Product> loadProduct = [];
+  final List<Productt> loadProduct = [];
 
   @override
   Widget build(BuildContext context) {

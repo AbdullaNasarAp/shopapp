@@ -13,7 +13,7 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     final routeArg = ModalRoute.of(context)?.settings.arguments as String;
     final loadedProduct =
-        Provider.of<ProductProvider>(context, listen: false).findById(routeArg);
+        Provider.of<Products>(context, listen: false).findById(routeArg);
 
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +35,7 @@ class ProductDetail extends StatelessWidget {
             ),
             ksizeboxh,
             Text(
-              "\$${loadedProduct.price}",
+              "₹${loadedProduct.price}",
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,

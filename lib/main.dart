@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => ProductProvider(),
+          create: (context) => Products(),
         ),
         ChangeNotifierProvider(
           create: (context) => Cart(),
@@ -51,12 +51,12 @@ class MyApp extends StatelessWidget {
             subtitle1: TextStyle(
                 fontFamily: 'Montserrat-VariableFont_wght',
                 fontSize: 17,
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.bold),
             subtitle2: TextStyle(
                 fontFamily: 'Montserrat-VariableFont_wght',
                 fontSize: 17,
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.bold),
           ),
         ),
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
           CartShow.routeName: (context) => const CartShow(),
           OrderScreen.routeorder: (context) => const OrderScreen(),
           UserProductsScreen.routeName: (context) => const UserProductsScreen(),
-          EditProductScreen.routeEdit: (context) => const EditProductScreen()
+          EditProductScreen.routeName: (context) => const EditProductScreen()
         },
       ),
     );
