@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
 import 'package:shopapp/model/cartitem.dart';
 
 class OrderItem {
