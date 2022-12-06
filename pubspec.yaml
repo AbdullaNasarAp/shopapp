@@ -83,7 +83,12 @@ flutter:
     - family: Montserrat-VariableFont_wght
       fonts:
         - asset: assets/font/Montserrat-VariableFont_wght.ttf
-
+    - family: Kenia
+      fonts:
+        - asset: assets/font/Kenia-Regular.ttf
+    - family: NerkoOne
+      fonts:
+        - asset: assets/font/NerkoOne-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

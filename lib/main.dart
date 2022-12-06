@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopapp/providers/auth.dart';
+import 'package:shopapp/screens/auth_screen.dart';
+import 'package:shopapp/screens/products_overview_screen.dart';
 
 import './screens/cart_screen.dart';
-import './screens/products_overview_screen.dart';
 import './screens/product_detail_screen.dart';
 import './providers/products.dart';
 import './providers/cart.dart';
@@ -21,6 +23,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (context) => Auth(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => Products(),
         ),
         ChangeNotifierProvider(
@@ -30,23 +35,53 @@ class MyApp extends StatelessWidget {
           create: (context) => Orders(),
         ),
       ],
-      child: MaterialApp(
-          title: 'MyShop',
-          theme: ThemeData(
-            fontFamily: 'Lato',
-            colorScheme:
-                ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(
-              secondary: Colors.deepOrange,
+      child: Consumer<Auth>(
+        builder: (context, value, _) {
+          return MaterialApp(
+            title: 'MyShop',
+            theme: ThemeData(
+              textTheme: const TextTheme(
+                bodyText1: TextStyle(
+                    fontWeight: FontWeight.w600, fontFamily: 'NerkoOne'),
+                bodyText2: TextStyle(
+                  fontFamily: 'NerkoOne',
+                  fontWeight: FontWeight.w600,
+                ),
+                headline1: TextStyle(
+                  fontFamily: 'NerkoOne',
+                  fontWeight: FontWeight.w900,
+                ),
+                headline2: TextStyle(
+                  fontFamily: 'NerkoOne',
+                  fontWeight: FontWeight.w900,
+                ),
+                subtitle1: TextStyle(
+                  fontFamily: 'NerkoOne',
+                  fontWeight: FontWeight.w900,
+                ),
+                subtitle2: TextStyle(
+                  fontFamily: 'NerkoOne',
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              fontFamily: 'Kenia',
+              colorScheme:
+                  ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(
+                secondary: Colors.deepOrange,
+              ),
             ),
-          ),
-          home: const ProductsOverviewScreen(),
-          routes: {
-            ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
-            CartScreen.routeName: (ctx) => const CartScreen(),
-            OrdersScreen.routeName: (ctx) => const OrdersScreen(),
-            UserProductsScreen.routeName: (ctx) => const UserProductsScreen(),
-            EditProductScreen.routeName: (ctx) => const EditProductScreen(),
-          }),
+            home: value.isAuth ? ProductsOverviewScreen() : AuthScreen(),
+            routes: {
+              ProductDetailScreen.routeName: (ctx) =>
+                  const ProductDetailScreen(),
+              CartScreen.routeName: (ctx) => const CartScreen(),
+              OrdersScreen.routeName: (ctx) => const OrdersScreen(),
+              UserProductsScreen.routeName: (ctx) => const UserProductsScreen(),
+              EditProductScreen.routeName: (ctx) => const EditProductScreen(),
+            },
+          );
+        },
+      ),
     );
   }
 }

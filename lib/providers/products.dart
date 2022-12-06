@@ -68,7 +68,7 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  Future<void> fetchAndSetProducts() async {
+  Future<void> fetchAndSetProducts(BuildContext context) async {
     final url = Uri.https(
         'shopapp-a7e14-default-rtdb.firebaseio.com', '/products.json');
     try {
@@ -91,7 +91,7 @@ class Products with ChangeNotifier {
       _items = loadedProducts;
       notifyListeners();
     } catch (error) {
-      throw (error);
+      throw showAlert(context, "No Found", "Please Try Again", "Retry");
     }
   }
 
@@ -158,5 +158,37 @@ class Products with ChangeNotifier {
       throw HttpException('Could not delete product.');
     }
     existingProduct = null;
+  }
+
+/////////////////////////////////alert dialog//////////////////////////
+  Future<dynamic> showAlert(
+      BuildContext context, String title, String sub, String btext) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(sub),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                "cancel",
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                btext,
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
