@@ -80,17 +80,16 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           ),
           Consumer<Cart>(
             builder: (_, cart, ch) => Badge(
+              color: Theme.of(context).primaryColor,
               value: cart.itemCount.toString(),
-              color: Colors.grey,
-              child: Container(),
-            ),
-            child: IconButton(
-              icon: Icon(
-                Icons.shopping_cart,
+              child: IconButton(
+                icon: Icon(
+                  Icons.shopping_cart,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(CartScreen.routeName);
+                },
               ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(CartScreen.routeName);
-              },
             ),
           ),
         ],
